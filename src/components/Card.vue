@@ -9,7 +9,7 @@
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{ title }}</div>
         <p class="text-gray-700 text-base">Count: {{ count }}</p>
-        <p class="text-gray-700 text-base">spacesLeft: {{ spacesLeft }}</p>
+        <!-- <p class="text-gray-700 text-base">spacesLeft: {{ spacesLeft }}</p> -->
       </div>
       <div class="px-6 py-4">
         <button
@@ -23,28 +23,27 @@
   </div>
 </template>
 <script>
-import { ref, computed } from '@vue/composition-api'
+import { reactive, computed, toRefs } from '@vue/composition-api'
 
 export default {
   setup() {
-    // Reactive reference example
-    const title = ref('Composed, reactive Title, yay!')
+    const state = reactive({
+      title: 'Composed, reactive Title, yay!',
+      count: 0,
+      attending: ['Tim', 'Bob', 'Joe']
+    })
+
+    state.spacesLeft = computed(() => state.count - state.attending.length)
+
     setTimeout(() => {
-      title.value = 'Updated, composed, reactive Title, yay!'
+      state.title = 'Updated, composed, reactive Title, yay!'
     }, 5000)
 
-    const count = ref(0)
-
-    // Method example
     function increaseCount() {
-      count.value++
+      state.count++
     }
 
-    // Computed example
-    const attending = ref(['Tim', 'Bob', 'Joe'])
-    const spacesLeft = computed(() => count.value - attending.value.length)
-
-    return { title, count, increaseCount, spacesLeft }
+    return { ...toRefs(state), increaseCount }
   }
 }
 </script>
