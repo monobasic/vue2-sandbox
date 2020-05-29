@@ -9,6 +9,7 @@
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">{{ title }}</div>
         <p class="text-gray-700 text-base">Count: {{ count }}</p>
+        <p class="text-gray-700 text-base">spacesLeft: {{ spacesLeft }}</p>
       </div>
       <div class="px-6 py-4">
         <button
@@ -22,7 +23,7 @@
   </div>
 </template>
 <script>
-import { ref } from '@vue/composition-api'
+import { ref, computed } from '@vue/composition-api'
 
 export default {
   setup() {
@@ -39,7 +40,11 @@ export default {
       count.value++
     }
 
-    return { title, count, increaseCount }
+    // Computed example
+    const attending = ref(['Tim', 'Bob', 'Joe'])
+    const spacesLeft = computed(() => count.value - attending.value.length)
+
+    return { title, count, increaseCount, spacesLeft }
   }
 }
 </script>
