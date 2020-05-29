@@ -1,4 +1,5 @@
 # vue2-sandbox
+Vue 2.6 with TailwindCSS, Portal Vue, Composition API Sandbox
 
 ## Project setup
 ```
