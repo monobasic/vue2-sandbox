@@ -5,8 +5,16 @@
         <img class="h-12 w-12" src="@/assets/logo.png" alt="ChitChat Logo">
       </div>
       <div class="ml-6 pt-1">
-        <h4 class="text-xl text-gray-900 leading-tight">Notification</h4>
-        <p class="text-base text-gray-600 leading-normal">Hey I am the Notification component!</p>
+        <h4 class="text-xl text-gray-900 leading-tight">
+          <slot name="title" v-bind:mySlotProp="`foo`">
+            Default Title
+          </slot>
+        </h4>
+        <p class="text-base text-gray-600 leading-normal">
+          <slot>
+            Default Text
+          </slot>
+        </p>
       </div>
     </div>
   </div>
