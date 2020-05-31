@@ -1,6 +1,8 @@
 <template>
   <div class="p-6">
-    <h1>I am the Home component.</h1>
+    <Search></Search>
+
+    <br /><br />
 
     <Card></Card>
 
@@ -40,12 +42,14 @@
 import Notification from './Notification.vue'
 import List from './List.vue'
 import Card from './Card.vue'
+import Search from './Search.vue'
 
 export default {
   components: {
     Notification,
     List,
-    Card
+    Card,
+    Search
   },
   data: () => {
     return {
