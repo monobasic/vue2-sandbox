@@ -24,9 +24,12 @@
 </template>
 <script>
 import useEventSpace from '@/use/event-space'
+import { onMounted } from '@vue/composition-api'
 
 export default {
   setup() {
+    // beforeCreate() is called right before setup()
+
     const {
       title,
       spaces,
@@ -34,6 +37,11 @@ export default {
       spacesLeft,
       increaseSpaces
     } = useEventSpace()
+
+    onMounted(() => {
+      console.log('mounted!!')
+    })
+
     return {
       title,
       spaces,
@@ -41,6 +49,7 @@ export default {
       spacesLeft,
       increaseSpaces
     }
+    // created() will be called right after setup()
   }
 }
 </script>
