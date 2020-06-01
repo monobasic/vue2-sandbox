@@ -21,40 +21,24 @@
 <script>
 import { ref, watch } from '@vue/composition-api'
 import eventApi from '@/api/events'
+import usePromise from '@/composables/use-promise'
 
 export default {
   setup() {
     const searchInput = ref('')
-    const results = ref(null)
-    const loading = ref(false)
-    const error = ref(null)
-
-    async function loadData(search) {
-      loading.value = true
-      error.value = null
-      results.value = null
-      try {
-        results.value = await eventApi.getEventCount(search.value)
-      } catch (err) {
-        error.value = err
-      } finally {
-        loading.value = false
-      }
-    }
+    const getEvents = usePromise(search => eventApi.getEventCount(search.value))
 
     watch(searchInput, () => {
       if (searchInput.value !== '') {
-        loadData(searchInput)
+        getEvents.createPromise(searchInput)
       } else {
-        results.value = null
+        getEvents.results.value = null
       }
     })
 
     return {
       searchInput,
-      results,
-      loading,
-      error
+      ...getEvents
     }
   }
 }
