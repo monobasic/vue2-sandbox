@@ -12,9 +12,9 @@
     </div>
 
     <div>
-      <p>Loading: {{ loading }}</p>
-      <p>Error: {{ error }}</p>
-      <p>Number of events: {{ results }}</p>
+      <p>Loading: {{ getEvents.loading.value }}</p>
+      <p>Error: {{ getEvents.error.value }}</p>
+      <p>Number of events: {{ getEvents.results.value }}</p>
     </div>
   </div>
 </template>
@@ -38,7 +38,7 @@ export default {
 
     return {
       searchInput,
-      ...getEvents
+      getEvents
     }
   }
 }
