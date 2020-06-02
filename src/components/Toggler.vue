@@ -48,29 +48,30 @@ const lightbulbMachine = Machine({
 export default {
   setup() {
     const { state: toggleState, send: toggleSend } = useMachine(toggleMachine)
-    // const { state: lightbulbState, send: lightbulbSend } = useMachine(
-    //   lightbulbMachine
-    // )
-
-    const lightService = useMachine(lightbulbMachine)
+    const { state: lightbulbState, send: lightbulbSend } = useMachine(
+      lightbulbMachine
+    )
 
     console.log(
       'lightService.state.value.value before',
-      lightService.state.value.value
-    )
-    lightService.send('TURN_ON')
-    console.log(
-      'lightService.state.value.value after',
-      lightService.state.value.value
+      lightbulbState.value.value
     )
 
-    onMounted(() => {})
+    // The send(...) function is an action creator; it is a pure function that only returns an action object and does not imperatively send an event. Actions are not immediately triggered.
+    lightbulbSend('TURN_ON')
+
+    onMounted(() => {
+      console.log(
+        'lightService.state.value.value after',
+        lightbulbState.value.value
+      )
+    })
 
     return {
       toggleState,
-      toggleSend
-      // lightbulbState,
-      // lightbulbSend
+      toggleSend,
+      lightbulbState,
+      lightbulbSend
     }
   }
 }
