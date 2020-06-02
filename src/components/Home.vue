@@ -1,5 +1,9 @@
 <template>
   <div class="p-6">
+    <Toggler></Toggler>
+
+    <br /><br />
+
     <Search></Search>
 
     <br /><br />
@@ -43,13 +47,15 @@ import Notification from './Notification.vue'
 import List from './List.vue'
 import Card from './Card.vue'
 import Search from './Search.vue'
+import Toggler from './Toggler.vue'
 
 export default {
   components: {
     Notification,
     List,
     Card,
-    Search
+    Search,
+    Toggler
   },
   data: () => {
     return {
